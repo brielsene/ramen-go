@@ -1,4 +1,4 @@
-package br.com.ramen_go.configuration;
+package br.com.ramen_go.infra.configuration;
 
 import feign.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Value;

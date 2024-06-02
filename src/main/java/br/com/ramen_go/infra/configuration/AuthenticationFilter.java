@@ -1,6 +1,9 @@
-package br.com.ramen_go.configuration;
+package br.com.ramen_go.infra.configuration;
 
+import br.com.ramen_go.dtos.ErrorApiKeyDto;
+import br.com.ramen_go.infra.exceptions.ErrorApiKeyException;
 import br.com.ramen_go.services.AuthenticationService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
@@ -23,14 +26,24 @@ public class AuthenticationFilter extends GenericFilterBean {
         try {
                 Authentication authentication = AuthenticationService.getAuthentication((HttpServletRequest) request);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-            } catch (Exception exp) {
+            } catch (ErrorApiKeyException exp) {
                 HttpServletResponse httpResponse = (HttpServletResponse) response;
-                httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                httpResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
                 httpResponse.setContentType(MediaType.APPLICATION_JSON_VALUE);
-                PrintWriter writer = httpResponse.getWriter();
-                writer.print(exp.getMessage());
-                writer.flush();
-                writer.close();
+                SecurityContextHolder.clearContext();
+              // Create the DTO
+        ErrorApiKeyDto errorDto = new ErrorApiKeyDto(exp.getMessage());
+
+        // Convert the DTO to JSON
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(errorDto);
+
+        // Write the JSON to the response
+        PrintWriter writer = httpResponse.getWriter();
+        writer.print(json);
+        writer.flush();
+        writer.close();
+
             }
 
             filterChain.doFilter(request, response);

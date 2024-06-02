@@ -1,6 +1,7 @@
 package br.com.ramen_go.services;
 
-import br.com.ramen_go.configuration.ApiKeyAuthentication;
+import br.com.ramen_go.infra.configuration.ApiKeyAuthentication;
+import br.com.ramen_go.infra.exceptions.ErrorApiKeyException;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,10 +19,9 @@ public class AuthenticationService {
     private static String AUTH_TOKKEN;
 
     public static Authentication getAuthentication(HttpServletRequest request) {
-        System.out.println("SUA API KEY É: "+getApiSecret());
         String apiKey = request.getHeader(AUTH_TOKEN_HEADER_NAME);
         if (apiKey == null || !apiKey.equals(getApiSecret())) {
-            throw new BadCredentialsException("Invalid API Key");
+            throw new ErrorApiKeyException("error: "+ "x-api-key header missing");
         }
 
         return new ApiKeyAuthentication(apiKey, AuthorityUtils.NO_AUTHORITIES);

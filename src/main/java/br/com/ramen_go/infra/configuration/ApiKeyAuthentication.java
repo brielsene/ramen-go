@@ -1,4 +1,4 @@
-package br.com.ramen_go.configuration;
+package br.com.ramen_go.infra.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
