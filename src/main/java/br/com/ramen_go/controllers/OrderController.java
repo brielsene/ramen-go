@@ -4,10 +4,7 @@ import br.com.ramen_go.dtos.OrderRequestDto;
 import br.com.ramen_go.dtos.OrderResponseDto;
 import br.com.ramen_go.services.OrderService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/orders")
 @RestController
@@ -19,6 +16,7 @@ public class OrderController {
     }
 
     @PostMapping
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<OrderResponseDto>createOrder(@RequestBody OrderRequestDto dto){
         return ResponseEntity.ok(this.orderService.createOrder(dto));
     }

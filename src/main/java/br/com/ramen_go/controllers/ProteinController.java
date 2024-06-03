@@ -4,10 +4,7 @@ import br.com.ramen_go.dtos.ProteinResponseDto;
 import br.com.ramen_go.services.ProteinService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +18,7 @@ public class ProteinController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<List<ProteinResponseDto>>listAll(){
         return ResponseEntity.status(HttpStatus.OK).body(this.service.listAllProteins());
     }
