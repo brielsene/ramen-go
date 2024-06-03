@@ -6,7 +6,7 @@ import br.com.ramen_go.services.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/orders")
+@RequestMapping("/order")
 @RestController
 public class OrderController {
     private final OrderService orderService;
