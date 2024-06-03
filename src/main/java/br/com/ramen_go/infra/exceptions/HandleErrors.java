@@ -14,6 +14,11 @@ public class HandleErrors {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ErrorApiKeyDto(ex.getMessage()));
     }
 
+    @ExceptionHandler(NoSuchElementOrderException.class)
+    public ResponseEntity handleNoSuchElementOrderError(){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("item with this id not found");
+    }
+
 
 
 

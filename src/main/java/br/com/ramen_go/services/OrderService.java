@@ -4,6 +4,7 @@ import br.com.ramen_go.dtos.OrderIdGenerateDto;
 import br.com.ramen_go.dtos.OrderRequestDto;
 import br.com.ramen_go.dtos.OrderResponseDto;
 import br.com.ramen_go.http.GenerateOrderId;
+import br.com.ramen_go.infra.exceptions.NoSuchElementOrderException;
 import br.com.ramen_go.model.Broth;
 import br.com.ramen_go.model.Order;
 import br.com.ramen_go.model.Protein;
@@ -34,10 +35,10 @@ public class OrderService {
 
     public OrderResponseDto createOrder(OrderRequestDto orderRequestDto){
         Broth broth = brothRepository.findById(orderRequestDto.brothId()).orElseThrow(
-                () -> new NoSuchElementException("")
+                () -> new NoSuchElementOrderException("")
         );
         Protein protein = proteinRepository.findById(orderRequestDto.proteinId()).orElseThrow(
-                () -> new NoSuchElementException()
+                () -> new NoSuchElementOrderException("")
         );
 
         Order order = new Order(Long.parseLong(this.generateOrderId.orderIdGenerateDto().orderId()), protein.getName()+" and "+broth.getName(), "https://tech.redventures.com.br/icons/ramen/ramenChasu.png");
