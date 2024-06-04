@@ -15,9 +15,8 @@ public class OrderController {
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
-
-    @PostMapping(value = "/order", consumes = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PostMapping(value = "/order", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OrderResponseDto>createOrder(@RequestBody OrderRequestDto dto){
         return ResponseEntity.ok(this.orderService.createOrder(dto));
     }
