@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/order")
+@RequestMapping
 @RestController
 public class OrderController {
     private final OrderService orderService;
