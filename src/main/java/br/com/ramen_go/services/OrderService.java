@@ -44,7 +44,7 @@ public class OrderService {
 
         Order order = new Order(Long.parseLong(this.generateOrderId.orderIdGenerateDto().orderId()), protein.getName()+" and "+broth.getName(), "https://tech.redventures.com.br/icons/ramen/ramenChasu.png");
         repository.save(order);
-        OrderResponseDto orderResponseDto = new OrderResponseDto(order.getId(), order.getDescrption(), order.getImage());
+        OrderResponseDto orderResponseDto = new OrderResponseDto(String.valueOf(order.getId()), order.getDescrption(), order.getImage());
         return orderResponseDto;
     }
 
