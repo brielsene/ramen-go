@@ -48,6 +48,10 @@ demora em torno de 1/2 minutos.
 - Order
 ![image](https://github.com/brielsene/ramen-go/assets/87671071/03884503-5abc-4314-b2da-5677b9b2c396)
 
+- Sem x-api-key (Tratamento de erro)
+![image](https://github.com/brielsene/ramen-go/assets/87671071/bbb8a8e1-8a90-4df8-8492-dd9598922a47)
+
+
 ## Futuras atualizações
 - Futuramente será adiciona JavaMail, para que seja enviado por e-mail um comprovante de compra, contendo o orderId e algumas outras informações
 - A API também terá uma segunda versão com linguagem Golang
