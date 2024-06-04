@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping
+@RequestMapping("/order")
 @RestController
 public class OrderController {
     private final OrderService orderService;
@@ -16,7 +16,7 @@ public class OrderController {
         this.orderService = orderService;
     }
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PostMapping(value = "/order", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OrderResponseDto>createOrder(@RequestBody OrderRequestDto dto){
         return ResponseEntity.ok(this.orderService.createOrder(dto));
     }
