@@ -1,6 +1,7 @@
 package br.com.ramen_go.controllers;
 
 import br.com.ramen_go.dtos.OrderRequestDto;
+import br.com.ramen_go.dtos.OrderRequestMapperDto;
 import br.com.ramen_go.dtos.OrderResponseDto;
 import br.com.ramen_go.services.OrderService;
 import org.springframework.http.MediaType;
@@ -17,7 +18,7 @@ public class OrderController {
     }
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
-    public ResponseEntity<OrderResponseDto>createOrder(@RequestBody OrderRequestDto dto){
+    public ResponseEntity<OrderResponseDto>createOrder(@RequestBody OrderRequestMapperDto dto){
         return ResponseEntity.ok(this.orderService.createOrder(dto));
     }
 

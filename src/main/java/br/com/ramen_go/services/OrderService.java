@@ -2,6 +2,7 @@ package br.com.ramen_go.services;
 
 import br.com.ramen_go.dtos.OrderIdGenerateDto;
 import br.com.ramen_go.dtos.OrderRequestDto;
+import br.com.ramen_go.dtos.OrderRequestMapperDto;
 import br.com.ramen_go.dtos.OrderResponseDto;
 import br.com.ramen_go.http.GenerateOrderId;
 import br.com.ramen_go.infra.exceptions.NoSuchElementOrderException;
@@ -33,11 +34,11 @@ public class OrderService {
         this.generateOrderId = generateOrderId;
     }
 
-    public OrderResponseDto createOrder(OrderRequestDto orderRequestDto){
-        Broth broth = brothRepository.findById(orderRequestDto.brothId()).orElseThrow(
+    public OrderResponseDto createOrder(OrderRequestMapperDto orderRequestMapperDto){
+        Broth broth = brothRepository.findById(Long.parseLong(orderRequestMapperDto.brothId())).orElseThrow(
                 () -> new NoSuchElementOrderException("")
         );
-        Protein protein = proteinRepository.findById(orderRequestDto.proteinId()).orElseThrow(
+        Protein protein = proteinRepository.findById(Long.parseLong(orderRequestMapperDto.proteinId())).orElseThrow(
                 () -> new NoSuchElementOrderException("")
         );
 
